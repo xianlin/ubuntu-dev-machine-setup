@@ -1,0 +1,60 @@
+---
+
+- name: Compile and install FFmpeg with NVIDIA support
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - nvidia-cuda-toolkit
+          - build-essential
+          - yasm
+          - cmake
+          - libtool
+          - libc6
+          - libc6-dev
+          - unzip
+          - wget
+          - libnuma1
+          - libnuma-dev
+        state: present
+
+    - name: Create nvidia directory
+      file:
+        path: /tmp/nvidia
+        state: directory
+
+    - name: Clone ffnvcodec repository
+      git:
+        repo: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+        dest: /tmp/nvidia/nv-codec-headers
+
+    - name: Install ffnvcodec
+      command:
+        cmd: make install
+        chdir: /tmp/nvidia/nv-codec-headers
+
+    - name: Clone FFmpeg repository
+      git:
+        repo: https://github.com/FFmpeg/FFmpeg.git
+        dest: /tmp/nvidia/ffmpeg
+
+    - name: Configure FFmpeg with NVIDIA GPU support
+      command:
+        cmd: >
+          ./configure --enable-nonfree --enable-cuda-nvcc --enable-libnpp \
+            --extra-cflags=-I/usr/local/cuda/include \
+            --extra-ldflags=-L/usr/local/cuda/lib64
+        chdir: /tmp/nvidia/ffmpeg
+
+    - name: Compile FFmpeg
+      command:
+        cmd: make -j $(nproc)
+        chdir: /tmp/nvidia/ffmpeg
+
+    - name: Install FFmpeg
+      command:
+        cmd: make install
+        chdir: /tmp/nvidia/ffmpeg
+...

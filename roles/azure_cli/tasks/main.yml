@@ -1,0 +1,26 @@
+---
+- name: Install required packages
+  apt:
+    name: ['ca-certificates', 'curl', 'apt-transport-https', 'lsb-release', 'gnupg']
+    state: present
+    update_cache: yes
+
+- name: Download and install the Microsoft signing key
+  shell: |
+    curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | \
+    tee /etc/apt/keyrings/microsoft.gpg > /dev/null
+    chmod go+r /etc/apt/keyrings/microsoft.gpg
+
+- name: Add the Azure CLI software repository
+  shell: |
+    AZ_REPO=$(lsb_release -cs)
+    echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
+    tee /etc/apt/sources.list.d/azure-cli.list
+
+- name: Update repository information and install the azure-cli package
+  apt:
+    name: azure-cli
+    state: present
+    update_cache: yes
+
+...

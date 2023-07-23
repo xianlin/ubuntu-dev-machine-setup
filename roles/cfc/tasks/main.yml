@@ -1,0 +1,7 @@
+---
+# add jumphost IP to the hosts file
+- name: Add entry to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "10.49.63.119 jump"
+    state: present

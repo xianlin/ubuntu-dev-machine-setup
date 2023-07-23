@@ -5,28 +5,30 @@ vscode_apt_key_url: "https://packages.microsoft.com/keys/microsoft.asc"
 vscode_apt_key_keyring: "/etc/apt/trusted.gpg.d/microsoft.gpg"
 
 vscode_extensions:
+  - shakram02.bash-beautify
   - aaron-bond.better-comments
-  - formulahendry.code-runner
+  # - formulahendry.code-runner
   - donjayamanne.githistory
   - eamodio.gitlens
-  - golang.Go
-  - vincaslt.highlight-matching-tag
-  - oderwat.indent-rainbow
+  # - golang.Go
+  # - vincaslt.highlight-matching-tag
+  # - oderwat.indent-rainbow
   - yzhang.markdown-all-in-one
   - ms-python.python
-  - ms-python.vscode-pylance
-  - humao.rest-client
-  - Gruntfuggly.todo-tree
+  # - ms-python.vscode-pylance
+  # - humao.rest-client
+  # - Gruntfuggly.todo-tree
   - shardulm94.trailing-spaces
-  - Equinusocio.vsc-material-theme
+  # - Equinusocio.vsc-material-theme
   - vscodevim.vim
   - visualstudioexptteam.vscodeintellicode
-  - ms-azuretools.vscode-docker
-  - vscode-icons-team.vscode-icons
+  # - ms-azuretools.vscode-docker
+  # - vscode-icons-team.vscode-icons
   - esbenp.prettier-vscode
   - redhat.vscode-yaml
-  - danielroedl.meld-diff
+  # - danielroedl.meld-diff
   - davidanson.vscode-markdownlint
   - hashicorp.terraform
+  - hashicorp.hcl
 
 ...
