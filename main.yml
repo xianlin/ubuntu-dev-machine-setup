@@ -8,7 +8,7 @@
 - import_playbook: googlechrome.yml
 - import_playbook: vscode.yml
 - import_playbook: azure_cli.yml
-- import_playbook: virtualbox_7.yml
+# - import_playbook: virtualbox_7.yml # install the newest vbox and docker, conflict with base
 - import_playbook: privacy.yml
 - import_playbook: security.yml
 - import_playbook: post_install.yml

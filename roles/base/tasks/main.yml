@@ -100,47 +100,47 @@
     name: "{{ base_developer_tools_pip3 }}"
     executable: pip3
 
-# Fix for bat syntax highlighting tool; Ubuntu packages it as batcat instead of just bat
-- name: create symlink for bat
-  ansible.builtin.file:
-    src: /usr/bin/batcat
-    dest: /usr/bin/bat
-    state: link
-    force: no
+# # Fix for bat syntax highlighting tool; Ubuntu packages it as batcat instead of just bat
+# - name: create symlink for bat
+#   ansible.builtin.file:
+#     src: /usr/bin/batcat
+#     dest: /usr/bin/bat
+#     state: link
+#     force: no
 
-- name: set nc to point to nmap's netcat implementation
-  community.general.alternatives:
-    name: nc
-    path: /usr/bin/ncat
+# - name: set nc to point to nmap's netcat implementation
+#   community.general.alternatives:
+#     name: nc
+#     path: /usr/bin/ncat
 
-- name: create .ssh dir
-  ansible.builtin.file:
-    path: "~{{ local_username }}/.ssh"
-    state: directory
-    mode: '0700'
-  become: yes
-  become_user: "{{ local_username }}"
+# - name: create .ssh dir
+#   ansible.builtin.file:
+#     path: "~{{ local_username }}/.ssh"
+#     state: directory
+#     mode: '0700'
+#   become: yes
+#   become_user: "{{ local_username }}"
 
-- block:
-    - name: Create directories for golang
-      ansible.builtin.file:
-        path: "~{{ local_username }}/{{ item }}"
-        state: directory
-      with_items:
-        - go
-        - go/src
-        - go/bin
+# - block:
+#     - name: Create directories for golang
+#       ansible.builtin.file:
+#         path: "~{{ local_username }}/{{ item }}"
+#         state: directory
+#       with_items:
+#         - go
+#         - go/src
+#         - go/bin
 
-    - name: Make GOPATH available in .bashrc
-      ansible.builtin.lineinfile:
-        path: "~{{ local_username }}/.bashrc"
-        line: "{{ item }}"
-        create: yes
-      with_items:
-        - export GOPATH=$HOME/go
-        - export PATH=$PATH:$GOPATH/bin
-  become: yes
-  become_user: "{{ local_username }}"
+#     - name: Make GOPATH available in .bashrc
+#       ansible.builtin.lineinfile:
+#         path: "~{{ local_username }}/.bashrc"
+#         line: "{{ item }}"
+#         create: yes
+#       with_items:
+#         - export GOPATH=$HOME/go
+#         - export PATH=$PATH:$GOPATH/bin
+#   become: yes
+#   become_user: "{{ local_username }}"
 
 - name: install download tools
   ansible.builtin.apt:
@@ -219,9 +219,9 @@
       ansible.builtin.systemd:
         daemon_reload: yes
 
-- name: make poetry create virtualenv dirs inside the project dir itself
-  ansible.builtin.command: "poetry config virtualenvs.in-project true"
-  become: yes
-  become_user: "{{ local_username }}"
+# - name: make poetry create virtualenv dirs inside the project dir itself
+#   ansible.builtin.command: "poetry config virtualenvs.in-project true"
+#   become: yes
+#   become_user: "{{ local_username }}"
 
 ...

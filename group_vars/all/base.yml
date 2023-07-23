@@ -17,6 +17,7 @@ base_archiving_tools:
 
 base_productivity_tools:
   - libreoffice
+  - flameshot
 
 base_system_tools:
   # - fatrace
@@ -138,7 +139,7 @@ base_developer_tools:
   # - zeal
 
 base_developer_tools_pip3:
-  - tldr
+  # - tldr
 
 base_virtualization_tools:
   - virtualbox
@@ -150,10 +151,10 @@ base_media_tools:
   - ffmpeg
   - gimp
   - imagemagick
-  - libimage-exiftool-perl
-  - mediainfo
-  - soundconverter
-  - totem
+  # - libimage-exiftool-perl
+  # - mediainfo
+  # - soundconverter
+  # - totem
 #  - ubuntu-restricted-extras
   - vlc
 
