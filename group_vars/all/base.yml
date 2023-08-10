@@ -23,6 +23,7 @@ base_system_tools:
   # - fatrace
   # - fdupes
   - gnome-calculator
+  - gnome-clocks
   - gufw
   # - progress
   # - pwgen

@@ -3,5 +3,8 @@
 - name: Add entry to /etc/hosts
   lineinfile:
     path: /etc/hosts
-    line: "10.49.63.119 jump"
+    line: "{{ item.ip }} {{ item.hostname }}"
     state: present
+    with_items:
+      - { ip: "10.49.63.119", hostname: "eu-jump" }
+      - { ip: "10.68.63.121", hostname: "us-jump" }
